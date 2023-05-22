@@ -1,0 +1,25 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 120%;
+}
+
+body {
+    overflow-x: hidden;
+    font-family: "Source Sans Pro", Calibri, Candara, Arial, sans-serif;
+}
+
+.section {
+    padding-top: 100px;
+    min-height: calc(100vh - 120px);
+}
+
+section#hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
