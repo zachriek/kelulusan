@@ -40,14 +40,39 @@
         <br>
         <h3 style="margin: 0;">Adalah benar siswa/siswi {{ $sekolah->sekolah }} dan dinyatakan :</h3>
         <center><b><u>
-              <h1>{{ $siswa->status === 1 ? 'LULUS' : 'TIDAK LULUS' }}</h1></b></u></center>
+              <h1>{{ $siswa->status == 1 ? 'LULUS' : 'TIDAK LULUS' }}</h1></b></u></center>
         <h3>Surat Keterangan Keterangan Lulus ini dibuat untuk dapat dipergunakan sebagaimana mestinya, dan berlaku
           sampai
           dengan Ijazah Asli siswa/siswi diterbitkan.<br> </h3>
       </td>
     </tr>
     <tr>
-      <td><img src="{{ url('base/assets/images/settings/' . $sekolah->ttd) }}" align="right" width="200"> </td>
+      <td align="right">
+        <table>
+          <tr>
+            <td>
+              <h3 style="margin: 0;">{{ $sekolah->kota }}, {{ $tglPengumuman }}</h3>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <h3 style="margin: 0;">Kepala Sekolah,</h3>
+              <br>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img src="{{ url('base/assets/images/settings/' . $sekolah->ttd) }}" width="200">
+              <br>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <h3 style="margin: 0; text-decoration: underline;">{{ $sekolah->kepsek }}</h3>
+            </td>
+          </tr>
+        </table>
+      </td>
     </tr>
   </table>
 </div>

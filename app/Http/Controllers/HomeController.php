@@ -22,17 +22,15 @@ class HomeController extends Controller
     public function cek(Request $request)
     {
         $request->validate([
-            'no_ujian' => ['required']
+            'nisn' => ['required', 'min:10', 'max:10']
         ]);
 
         $tgl_pengumuman = Setting::first()->tgl_pengumuman;
         $tgl_pengumuman = strip_tags($tgl_pengumuman);
         $waktu = $this->getWaktuPengumuman($tgl_pengumuman);
 
-        $siswa = Student::where('no_ujian', $request->no_ujian)->first();
-        $nilai_kelompok_a = $this->get_nilai_kelompok_a($siswa);
-        $nilai_kelompok_b = $this->get_nilai_kelompok_b($siswa);
-        return view('pages.base.home', compact('siswa', 'nilai_kelompok_a', 'nilai_kelompok_b', 'waktu', 'tgl_pengumuman'));
+        $siswa = Student::where('nisn', $request->nisn)->first();
+        return view('pages.base.home', compact('siswa', 'waktu', 'tgl_pengumuman'));
     }
 
     public function print(Request $request)
@@ -44,7 +42,10 @@ class HomeController extends Controller
         $siswa = Student::findOrFail($request->id);
         $sekolah = Setting::first();
         $tahun_ajaran = date('Y') - 1 . '/' . date('Y');
-        return view('pages.base.print', compact('siswa', 'sekolah', 'tahun_ajaran'));
+        setlocale(LC_TIME, 'IND');
+        $tgl_pengumuman = Setting::getTanggal();
+
+        return view('pages.base.print', compact('siswa', 'sekolah', 'tahun_ajaran', 'tgl_pengumuman'));
     }
 
     private function getWaktuPengumuman($tgl_pengumuman)
@@ -58,61 +59,5 @@ class HomeController extends Controller
         $waktu = "<br>$tgl_skl Pukul: $jam WIB";
 
         return $waktu;
-    }
-
-    private function  get_nilai_kelompok_a($siswa)
-    {
-        return [
-            [
-                "nama" => "Pendidikan Agama dan Budi Pekerti",
-                "nilai" =>  $siswa->n_pai
-            ],
-            [
-                "nama" => "Pendidikan Pancasila dan Kewarganegaraan",
-                "nilai" =>  $siswa->n_pkn
-            ],
-            [
-                "nama" => "Bahasa Indonesia",
-                "nilai" =>  $siswa->n_bin
-            ],
-            [
-                "nama" => "Matematika",
-                "nilai" =>  $siswa->n_bin
-            ],
-            [
-                "nama" => "Ilmu Pengetahuan Alam",
-                "nilai" =>  $siswa->n_ipa
-            ],
-            [
-                "nama" => "Ilmu Pengetahuan Sosial",
-                "nilai" =>  $siswa->n_ips
-            ],
-            [
-                "nama" => "Bahasa Inggris",
-                "nilai" =>  $siswa->n_big
-            ],
-        ];
-    }
-
-    private function  get_nilai_kelompok_b($siswa)
-    {
-        return [
-            [
-                "nama" => "Seni Budaya",
-                "nilai" =>  $siswa->n_sb
-            ],
-            [
-                "nama" => "Pendidikan Jasmani, Olah Raga, dan Kesehatan",
-                "nilai" =>  $siswa->n_pjok
-            ],
-            [
-                "nama" => "Prakarya",
-                "nilai" =>  $siswa->n_pkr
-            ],
-            [
-                "nama" => "Bahasa Lampung",
-                "nilai" =>  $siswa->n_bde
-            ],
-        ];
     }
 }

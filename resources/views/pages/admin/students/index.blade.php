@@ -44,59 +44,30 @@
             <table class="table table-bordered table-striped" id="students_table">
               <thead>
                 <tr class="align-middle">
-                  <th rowspan="2">No.</th>
-                  <th rowspan="2">No. Ujian</th>
-                  <th rowspan="2">NIS</th>
-                  <th rowspan="2">NISN</th>
-                  <th rowspan="2">Nama Siswa</th>
-                  <th rowspan="2">Kelas</th>
-                  <th rowspan="2">Status</th>
-                  <th colspan="11" class="text-center bg-light-primary">Nilai Akhir Mata Pelajaran Kurikulum 2013</th>
-                  <th rowspan="2">Rata-rata</th>
-                  <th rowspan="2">Action</th>
-                </tr>
-                <tr class="align-middle bg-light-primary">
-                  <th>PAI</th>
-                  <th>PKN</th>
-                  <th>BIND</th>
-                  <th>MTK</th>
-                  <th>IPA</th>
-                  <th>IPS</th>
-                  <th>BING</th>
-                  <th>SB</th>
-                  <th>PJOK</th>
-                  <th>PRK</th>
-                  <th>BL</th>
+                  <th>No.</th>
+                  <th>Nama Siswa</th>
+                  <th>Tempat dan Tanggal Lahir</th>
+                  <th>NIS/NISN</th>
+                  <th>Kelas</th>
+                  <th>Keterangan</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
                 @foreach ($students as $student)
                   <tr class="align-middle">
                     <td>{{ $loop->iteration }}.</td>
-                    <td>{{ $student->no_ujian }}</td>
-                    <td>{{ $student->nis }}</td>
-                    <td>{{ $student->nisn }}</td>
                     <td>{{ $student->nama }}</td>
+                    <td>{{ $student->ttl }}</td>
+                    <td>{{ $student->nis }}/{{ $student->nisn }}</td>
                     <td>{{ $student->kls }}</td>
                     <td class="fw-semibold">
-                      @if ($student->status === 1)
+                      @if ($student->status == 1)
                         <span class="text-success">LULUS</span>
                       @else
                         <span class="text-danger">TIDAK LULUS</span>
                       @endif
                     </td>
-                    <td>{{ $student->n_pai }}</td>
-                    <td>{{ $student->n_pkn }}</td>
-                    <td>{{ $student->n_bin }}</td>
-                    <td>{{ $student->n_mat }}</td>
-                    <td>{{ $student->n_ipa }}</td>
-                    <td>{{ $student->n_ips }}</td>
-                    <td>{{ $student->n_big }}</td>
-                    <td>{{ $student->n_sb }}</td>
-                    <td>{{ $student->n_pjok }}</td>
-                    <td>{{ $student->n_pkr }}</td>
-                    <td>{{ $student->n_bde }}</td>
-                    <td>{{ $student->rata2 }}</td>
                     <td>
                       <a href="{{ route('admin.students.edit', $student->id) }}" class="btn btn-sm btn-primary">
                         <i class="ti ti-pencil"></i>
@@ -130,7 +101,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <a href="{{ url('base/assets/templates/nilai_siswa_22.csv') }}" class="btn btn-primary mb-4">
+          <a href="{{ url('base/assets/templates/template.xlsx') }}" class="btn btn-primary mb-4">
             <i class="ti ti-download"></i>
             <span>Download Template Excel</span>
           </a>

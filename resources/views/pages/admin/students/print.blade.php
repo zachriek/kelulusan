@@ -14,7 +14,7 @@
 
 <body>
   @foreach ($students as $siswa)
-    <x-skl-table :siswa="$siswa" :sekolah="$sekolah" :tahun="$tahun_ajaran" />
+    <x-skl-table :siswa="$siswa" :sekolah="$sekolah" :tahun="$tahun_ajaran" :tgl_pengumuman="$tgl_pengumuman" />
   @endforeach
 
   <script>

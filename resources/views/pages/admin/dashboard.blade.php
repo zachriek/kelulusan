@@ -78,7 +78,7 @@
             </div>
             <div class="col-4">
               <div class="d-flex justify-content-center">
-                <div id="breakup"></div>
+                <div id="kelulusan"></div>
               </div>
             </div>
           </div>
@@ -86,144 +86,10 @@
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-12 d-flex align-items-strech">
-      <div class="card w-100">
-        <div class="card-body">
-          <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
-            <div class="mb-3 mb-sm-0">
-              <h5 class="card-title fw-semibold">Rata-rata Nilai Akhir</h5>
-            </div>
-          </div>
-          <div id="chart"></div>
-        </div>
-      </div>
-    </div>
-  </div>
 
   @push('addon-scripts')
     <script>
-      $(function() {
-        var chart = {
-          series: [{
-            name: "Rata-rata Nilai Akhir:",
-            data: [{{ $rata2_nilai_akhir['n_pai'] ?? 0 }}, {{ $rata2_nilai_akhir['n_pkn'] ?? 0 }},
-              {{ $rata2_nilai_akhir['n_bin'] ?? 0 }}, {{ $rata2_nilai_akhir['n_mat'] ?? 0 }},
-              {{ $rata2_nilai_akhir['n_ipa'] ?? 0 }}, {{ $rata2_nilai_akhir['n_ips'] ?? 0 }},
-              {{ $rata2_nilai_akhir['n_big'] ?? 0 }},
-              {{ $rata2_nilai_akhir['n_sb'] ?? 0 }}, {{ $rata2_nilai_akhir['n_pjok'] ?? 0 }},
-              {{ $rata2_nilai_akhir['n_pkr'] ?? 0 }}, {{ $rata2_nilai_akhir['n_bde'] ?? 0 }}
-            ],
-          }, ],
-
-          chart: {
-            type: "bar",
-            height: 345,
-            offsetX: -15,
-            toolbar: {
-              show: false
-            },
-            foreColor: "#adb0bb",
-            fontFamily: "inherit",
-            sparkline: {
-              enabled: false
-            },
-          },
-
-          colors: ["#5D87FF"],
-
-          plotOptions: {
-            bar: {
-              horizontal: false,
-              columnWidth: "35%",
-              borderRadius: [6],
-              borderRadiusApplication: "end",
-              borderRadiusWhenStacked: "all",
-            },
-          },
-          markers: {
-            size: 0
-          },
-
-          dataLabels: {
-            enabled: false,
-          },
-
-          legend: {
-            show: false,
-          },
-
-          grid: {
-            borderColor: "rgba(0,0,0,0.1)",
-            strokeDashArray: 3,
-            xaxis: {
-              lines: {
-                show: false,
-              },
-            },
-          },
-
-          xaxis: {
-            type: "category",
-            categories: [
-              "PAI",
-              "PPKN",
-              "B.INDO",
-              "MTK",
-              "IPA",
-              "IPS",
-              "B.ING",
-              "SenBud",
-              "PJOK",
-              "Prakarya",
-              "BALAM",
-            ],
-            labels: {
-              style: {
-                cssClass: "grey--text lighten-2--text fill-color"
-              },
-            },
-          },
-
-          yaxis: {
-            show: true,
-            min: 0,
-            max: 100,
-            tickAmount: 10,
-            labels: {
-              style: {
-                cssClass: "grey--text lighten-2--text fill-color",
-              },
-            },
-          },
-          stroke: {
-            show: true,
-            width: 3,
-            lineCap: "butt",
-            colors: ["transparent"],
-          },
-
-          tooltip: {
-            theme: "light"
-          },
-
-          responsive: [{
-            breakpoint: 600,
-            options: {
-              plotOptions: {
-                bar: {
-                  borderRadius: 3,
-                },
-              },
-            },
-          }, ],
-        };
-
-        var chart = new ApexCharts(document.querySelector("#chart"), chart);
-        chart.render();
-      });
-
-      var breakup = {
+      let kelulusan = {
         color: "#adb5bd",
         series: [{{ $jumlah_lulus }}, {{ $jumlah_tidak_lulus }}],
         labels: ["Lulus", "Tidak Lulus"],
@@ -269,7 +135,7 @@
         },
       };
 
-      var chart = new ApexCharts(document.querySelector("#breakup"), breakup);
+      let chart = new ApexCharts(document.querySelector("#kelulusan"), kelulusan);
       chart.render();
     </script>
   @endpush

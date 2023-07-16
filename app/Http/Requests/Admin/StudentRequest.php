@@ -24,26 +24,11 @@ class StudentRequest extends FormRequest
     public function rules()
     {
         return [
-            'no_ujian' => ['required'],
             'nis' => ['required'],
-            'nisn' => ['required'],
+            'nisn' => ['required', 'min:10', 'max:10'],
             'nama' => ['required'],
             'ttl' => ['required'],
-            'ortu' => ['required'],
             'kls' => ['required'],
-            'n_pai' => ['required'],
-            'n_pkn' => ['required'],
-            'n_bin' => ['required'],
-            'n_mat' => ['required'],
-            'n_ipa' => ['required'],
-            'n_ips' => ['required'],
-            'n_big' => ['required'],
-            'n_sb' => ['required'],
-            'n_pjok' => ['required'],
-            'n_pkr' => ['required'],
-            'n_bde' => ['required'],
-            'n_mulok2' => ['required'],
-            'rata2' => ['required'],
             'status' => ['required']
         ];
     }

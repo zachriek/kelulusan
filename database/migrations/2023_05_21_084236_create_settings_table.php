@@ -16,14 +16,12 @@ class CreateSettingsTable extends Migration
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
             $table->string('sekolah')->nullable();
-            $table->string('kepsek', 50)->nullable();
-            $table->string('nip', 20)->nullable();
-            $table->string('no_surat', 30)->nullable();
-            $table->string('ttd', 64)->nullable();
+            $table->string('kepsek')->nullable();
+            $table->string('kota')->nullable();
+            $table->string('ttd')->nullable();
             $table->string('about')->nullable();
             $table->dateTime('tgl_pengumuman')->nullable();
             $table->string('contact')->nullable();
-            $table->string('nopesformat')->nullable();
             $table->string('logo')->nullable();
             $table->string('kop')->nullable();
             $table->string('cap')->nullable();

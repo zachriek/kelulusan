@@ -21,7 +21,7 @@ class StudentController extends Controller
         }
 
         $request->validate([
-            'file' => ['required', 'file', 'mimes:csv,txt', 'max:10000']
+            'file' => ['required', 'file', 'mimes:csv,xlsx', 'max:10000']
         ]);
 
         $file = $request->file('file');
@@ -29,7 +29,7 @@ class StudentController extends Controller
         $file->move(public_path('base/assets/files'), $file_name);
 
         $import = new StudentsImport();
-        Student::query()->delete();
+        // Student::query()->delete();
         Excel::import($import, public_path('base/assets/files/' . $file_name));
 
         toast('Berhasil import data siswa!', 'success');
@@ -46,7 +46,9 @@ class StudentController extends Controller
         $students = Student::all();
         $sekolah = Setting::first();
         $tahun_ajaran = date('Y') - 1 . '/' . date('Y');
-        return view('pages.admin.students.print', compact('students', 'sekolah', 'tahun_ajaran'));
+        $tgl_pengumuman = Setting::getTanggal();
+
+        return view('pages.admin.students.print', compact('students', 'sekolah', 'tahun_ajaran', 'tgl_pengumuman'));
     }
 
     public function index()

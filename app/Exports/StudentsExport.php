@@ -14,7 +14,7 @@ class StudentsExport implements FromCollection, WithHeadings
 
     public function headings(): array
     {
-        return ["NO_UJIAN", "NIS", "NISN", "Nama Siswa", "TTL", "Nama Ortu", 'Kelas', 'NRR-PAI', 'NRR-PKn', 'NRR-BInd', 'NRR-MTK', 'NRR-IPA', 'NRR-IPS', 'NRR-BIng', 'NRR-SB', 'NRR-PJOK', 'NRR-PRK', 'Mulok1', 'Mulok2', 'Rata2', 'LULUS/TIDAK'];
+        return ["NAMA", "TEMPAT DAN TANGGAL LAHIR", "NIS/NISN", "KELAS", "KETERANGAN"];
     }
 
     public function collection()

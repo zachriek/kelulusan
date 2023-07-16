@@ -16,33 +16,18 @@ class StudentsImport implements ToModel, WithHeadingRow
 
     public function headingRow(): int
     {
-        return 1;
+        return 3;
     }
 
     public function model(array $row)
     {
         return new Student([
-            'no_ujian' => $row['no_ujian'],
-            'nis' => $row['nis'],
-            'nisn' => $row['nisn'],
-            'nama' => $row['nama_siswa'],
-            'ttl' => $row['ttl'],
-            'ortu' => $row['nama_ortu'],
-            'kls' => $row['kelas'],
-            'n_pai' => $row['nrr_pai'] ?? 0,
-            'n_pkn' => $row['nrr_pkn'] ?? 0,
-            'n_bin' => $row['nrr_bind'] ?? 0,
-            'n_mat' => $row['nrr_mtk'] ?? 0,
-            'n_ipa' => $row['nrr_ipa'] ?? 0,
-            'n_ips' => $row['nrr_ips'] ?? 0,
-            'n_big' => $row['nrr_bing'] ?? 0,
-            'n_sb' => $row['nrr_sb'] ?? 0,
-            'n_pjok' => $row['nrr_pjok'] ?? 0,
-            'n_pkr' => $row['nrr_prk'] ?? 0,
-            'n_bde' => $row['mulok1'] ?? 0,
-            'n_mulok2' => $row['mulok2'] ?? 0,
-            'rata2' => $row['rata2'] ?? 0,
-            'status' => $row['lulustidak']
+            'nama' => $row[0],
+            'ttl' => $row[1],
+            'nis' => explode('/ ', $row[2])[0],
+            'nisn' => explode('/ ', $row[2])[1],
+            'kls' => $row[3],
+            'status' => $row[4] === 'LULUS' ? 1 : 0
         ]);
     }
 }

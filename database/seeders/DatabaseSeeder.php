@@ -16,8 +16,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-
         User::create([
             'name' => 'Admin 1',
             'username' => 'admin1',
@@ -27,9 +25,8 @@ class DatabaseSeeder extends Seeder
 
         Setting::create([
             'sekolah' => 'SMP Insan Mandiri',
-            'kepsek' => 'Achmad Maulana',
-            'nip' => '1234567890123344',
-            'no_surat' => '421/071-SMP.3.1/2023',
+            'kepsek' => 'Kepala Sekolah',
+            'kota' => 'Bandar Lampung',
             'ttd' => 'ttd.png',
             'cap' => 'cap.png',
             'logo' => 'logo.png',
@@ -41,7 +38,6 @@ class DatabaseSeeder extends Seeder
             Email: -
             <br>
             Website: -',
-            'nopesformat' => '02-18-99-99-999',
             'tgl_pengumuman' => date('Y-m-d H:i:s')
         ]);
     }

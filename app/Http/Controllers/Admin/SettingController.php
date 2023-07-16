@@ -30,12 +30,9 @@ class SettingController extends Controller
         $data = $request->all();
         $data['tgl_pengumuman'] = "$request->tgl_pengumuman $request->jam_pengumuman";
 
-        if ($request->file('logo') && $request->file('ttd') && $request->file('cap') && $request->file('kop')) {
-            if ($setting->logo !== null && $setting->ttd !== null && $setting->cap !== null && $setting->kop !== null) {
+        if ($request->file('logo')) {
+            if ($setting->logo !== null) {
                 $this->remove_image($setting->logo);
-                $this->remove_image($setting->ttd);
-                $this->remove_image($setting->cap);
-                $this->remove_image($setting->kop);
             }
 
             // Logo
@@ -43,24 +40,39 @@ class SettingController extends Controller
             $logo_name = 'logo.png';
             $this->move_image($logo_file, $logo_name);
             $data['logo'] = $logo_name;
+        }
+        if ($request->file('ttd')) {
+            if ($setting->ttd !== null) {
+                $this->remove_image($setting->ttd);
+            }
 
             // TTD
             $ttd_file = $request->file('ttd');
             $ttd_name = 'ttd.png';
             $this->move_image($ttd_file, $ttd_name);
             $data['ttd'] = $ttd_name;
-
-            // KOP
-            $kop_file = $request->file('kop');
-            $kop_name = 'kopsurat.png';
-            $this->move_image($kop_file, $kop_name);
-            $data['kop'] = $kop_name;
+        }
+        if ($request->file('cap')) {
+            if ($setting->cap !== null) {
+                $this->remove_image($setting->cap);
+            }
 
             // CAP
             $cap_file = $request->file('cap');
             $cap_name = 'cap.png';
             $this->move_image($cap_file, $cap_name);
             $data['cap'] = $cap_name;
+        }
+        if ($request->file('kop')) {
+            if ($setting->kop !== null) {
+                $this->remove_image($setting->kop);
+            }
+
+            // KOP
+            $kop_file = $request->file('kop');
+            $kop_name = 'kopsurat.png';
+            $this->move_image($kop_file, $kop_name);
+            $data['kop'] = $kop_name;
         }
 
         $setting->update($data);

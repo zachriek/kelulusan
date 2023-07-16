@@ -23,7 +23,7 @@
                   @enderror
                 </div>
               </div>
-              <div class="col-12 col-md-6 mb-4">
+              <div class="col-12 mb-4">
                 <div class="form-group">
                   <label for="sekolah" class="form-label">Nama Sekolah</label>
                   <input type="text" name="sekolah" id="sekolah"
@@ -38,12 +38,25 @@
               </div>
               <div class="col-12 col-md-6 mb-4">
                 <div class="form-group">
-                  <label for="nopesformat" class="form-label">Format Nomor Peserta</label>
-                  <input type="text" name="nopesformat" id="nopesformat"
-                    class="form-control @error('nopesformat') is-invalid @enderror"
-                    placeholder="Masukkan Format Nomor Peserta" value="{{ old('nopesformat', $setting->nopesformat) }}"
+                  <label for="kepsek" class="form-label">Nama Kepala Sekolah</label>
+                  <input type="text" name="kepsek" id="kepsek"
+                    class="form-control @error('kepsek') is-invalid @enderror"
+                    placeholder="Masukkan Nama Kepala Sekolah" value="{{ old('kepsek', $setting->kepsek) }}"
                     autocomplete="off">
-                  @error('nopesformat')
+                  @error('kepsek')
+                    <div class="invalid-feedback">
+                      {{ $message }}
+                    </div>
+                  @enderror
+                </div>
+              </div>
+              <div class="col-12 col-md-6 mb-4">
+                <div class="form-group">
+                  <label for="kota" class="form-label">Kota</label>
+                  <input type="text" name="kota" id="kota"
+                    class="form-control @error('kota') is-invalid @enderror" placeholder="Masukkan Kota"
+                    value="{{ old('kota', $setting->kota) }}" autocomplete="off">
+                  @error('kota')
                     <div class="invalid-feedback">
                       {{ $message }}
                     </div>
@@ -108,55 +121,14 @@
             <hr>
 
             <div class="row px-2">
-              <div class="col-12 col-md-6 mb-4">
-                <div class="form-group">
-                  <label for="kepsek" class="form-label">Nama Kepala Sekolah</label>
-                  <input type="text" name="kepsek" id="kepsek"
-                    class="form-control @error('kepsek') is-invalid @enderror"
-                    placeholder="Masukkan Nama Kepala Sekolah" value="{{ old('kepsek', $setting->kepsek) }}"
-                    autocomplete="off">
-                  @error('kepsek')
-                    <div class="invalid-feedback">
-                      {{ $message }}
-                    </div>
-                  @enderror
-                </div>
-              </div>
-              <div class="col-12 col-md-6 mb-4">
-                <div class="form-group">
-                  <label for="nip" class="form-label">NIP Kepala Sekolah</label>
-                  <input type="number" name="nip" id="nip"
-                    class="form-control @error('nip') is-invalid @enderror" placeholder="Masukkan NIP Kepala Sekolah"
-                    value="{{ old('nip', $setting->nip) }}" autocomplete="off">
-                  @error('nip')
-                    <div class="invalid-feedback">
-                      {{ $message }}
-                    </div>
-                  @enderror
-                </div>
-              </div>
-              <div class="col-12 mb-4">
-                <div class="form-group">
-                  <label for="no_surat" class="form-label">Nomor Surat Kelulusan</label>
-                  <input type="text" name="no_surat" id="no_surat"
-                    class="form-control @error('no_surat') is-invalid @enderror"
-                    placeholder="Masukkan Nomor Surat Kelulusan" value="{{ old('no_surat', $setting->no_surat) }}"
-                    autocomplete="off">
-                  @error('no_surat')
-                    <div class="invalid-feedback">
-                      {{ $message }}
-                    </div>
-                  @enderror
-                </div>
-              </div>
               <div class="col-12 mb-4">
                 <img id="cap_img" class="img-thumbnail" width="200"
                   src="{{ url('base/assets/images/settings/' . $setting->cap) }}" alt="cap" loading="lazy">
                 <div class="form-group">
                   <label for="cap" class="form-label">Cap/stempel Sekolah</label>
                   <input type="file" name="cap" id="cap"
-                    class="form-control @error('cap') is-invalid @enderror"
-                    placeholder="Masukkan Cap/stempel Sekolah" onchange="previewImage(this, '#cap_img')">
+                    class="form-control @error('cap') is-invalid @enderror" placeholder="Masukkan Cap/stempel Sekolah"
+                    onchange="previewImage(this, '#cap_img')">
                   @error('cap')
                     <div class="invalid-feedback">
                       {{ $message }}

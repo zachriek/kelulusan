@@ -26,12 +26,10 @@ class SettingRequest extends FormRequest
         return [
             'sekolah' => ['required'],
             'kepsek' => ['required'],
-            'nip' => ['required'],
-            'no_surat' => ['required'],
+            'kota' => ['required'],
             'ttd' => ['mimes:jpeg,png,jpg', 'max:10000'],
             'about' => ['required'],
             'tgl_pengumuman' => ['required'],
-            'nopesformat' => ['required'],
             'logo' => ['mimes:jpeg,png,jpg', 'max:10000'],
             'kop' => ['mimes:jpeg,png,jpg', 'max:10000'],
             'cap' => ['mimes:jpeg,png,jpg', 'max:10000'],
